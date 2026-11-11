@@ -1,0 +1,35 @@
+name: C++17 full Monte Carlo regression
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  compile-run-verify:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Enable MSVC command line
+        if: runner.os == 'Windows'
+        uses: ilammy/msvc-dev-cmd@v1
+      - name: Compile with GCC
+        if: runner.os == 'Linux'
+        run: g++ -std=c++17 -O2 -Wall -Wextra -Wpedantic -pthread main.cpp -o retaining_wall
+      - name: Compile with MSVC
+        if: runner.os == 'Windows'
+        shell: cmd
+        run: cl /std:c++17 /EHsc /O2 /utf-8 main.cpp /Fe:retaining_wall.exe
+      - name: Run full simulation on Linux
+        if: runner.os == 'Linux'
+        run: ./retaining_wall --all .
+      - name: Run full simulation on Windows
+        if: runner.os == 'Windows'
+        shell: cmd
+        run: retaining_wall.exe --all .
+      - name: Verify generated reports
+        run: python scripts/verify_outputs.py

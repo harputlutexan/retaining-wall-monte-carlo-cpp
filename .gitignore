@@ -1,0 +1,26 @@
+# Compiled binaries and objects
+*.exe
+*.obj
+*.o
+*.pdb
+*.ilk
+retaining_wall
+retaining_wall_gcc
+retaining_wall_clang
+
+# Build-system and IDE artifacts
+build/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+.vs/
+.vscode/
+
+# Generated runtime reports in the repository root
+/retaining_wall_optimization_cpp.json
+/all_design_results_cpp.csv
+
+# Local logs and Python cache
+*.log
+*.stderr
+__pycache__/

@@ -1,0 +1,12 @@
+{
+  "construction_hydraulic_case_index": 366,
+  "service_hydraulic_case_water_moment": 176.528,
+  "baseline_feasible_design_count": 96,
+  "nominal_selected_design_index": 2100,
+  "derived_verification_case_index": 4514,
+  "robust_feasible_design_count": 78,
+  "final_selected_design_index": 2134,
+  "selected_conditional_passive_out_success_probability": 0.8128,
+  "selected_maximum_cost_regret": 0.00,
+  "expected_total_cost": 3172.20
+}
